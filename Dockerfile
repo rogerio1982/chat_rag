@@ -1,35 +1,34 @@
-# ===== Base PyTorch CPU enxuta =====
-FROM pytorch/pytorch:2.2.0-cpu
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
-# Variáveis de ambiente
-ENV PYTHONUNBUFFERED=1 \
-    LANG=C.UTF-8 \
-    LC_ALL=C.UTF-8
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
+# Set working directory
 WORKDIR /app
 
-# Copia apenas o requirements.txt
-COPY requirements.txt .
+# Copy requirements.txt first to leverage Docker cache
+COPY requirements.txt /app/requirements.txt
 
-# Instala apenas dependências de sistema necessárias
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        ffmpeg \
-        tesseract-ocr \
-        libsm6 \
-        libxext6 \
-    && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install system dependencies for some Python packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    ffmpeg \
+    tesseract-ocr \
+    libsm6 \
+    libxext6 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instala dependências Python, exceto PyTorch (já incluso na imagem base)
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt --no-deps \
-    && rm -rf /root/.cache/pip
+# Install Python dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o código da aplicação
-COPY . .
+# Copy the project files
+COPY . /app
 
-# Expõe porta FastAPI
-EXPOSE 8000
+# Expose ports for FastAPI and Flask
+EXPOSE 8000 5000
 
-# Comando padrão
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run both servers using bash
+CMD ["bash", "-c", "uvicorn main:app --host 0.0.0.0 --port 8000 & python app.py"]
