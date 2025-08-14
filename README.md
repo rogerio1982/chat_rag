@@ -10,8 +10,8 @@ The API processes **text**, **audio**, and **images** (via OCR) based on documen
 
 To run this project, you will need **Python 3.8+** and two external tools installed on your system:
 
-- **[Tesseract OCR](https://github.com/tesseract-ocr/tesseract)** → Essencial para ler texto de imagens.  
-- **[FFmpeg](https://ffmpeg.org/download.html)** → Necessário para processar arquivos de áudio.
+- **[Tesseract OCR](https://github.com/tesseract-ocr/tesseract)** → Essential for reading text from images. 
+- **[FFmpeg](https://ffmpeg.org/download.html)** → Required to process audio files.
 
 ---
 
