@@ -26,3 +26,20 @@ python -m venv venv
 venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
+
+###2️⃣ Instale as dependências
+```bash
+
+pip install -r requirements.txt
+
+3️⃣ Configure sua chave do Gemini
+```bash
+
+Pegue sua chave no Google AI Studio.
+
+Substitua "SUA_CHAVE_AQUI" no arquivo main.py.
+
+4️⃣ Adicione seus documentos à base de conhecimento
+```bash
+
+Coloque arquivos .txt, .md ou .pdf na pasta:
