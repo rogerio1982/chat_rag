@@ -42,8 +42,10 @@ pip install -r requirements.txt
 ---
 
 ### 3 Configure your Gemini API key (LLM)
+```bash
 Get your key from Google AI Studio.
 Replace "YOUR_KEY_HERE" in the main.py file.
+```
 
 ### 4 How to Run
 Você precisa rodar **dois servidores** em terminais separados.
