@@ -29,8 +29,8 @@ import re
 # Gemini
 import google.generativeai as genai
 
-# Configura a API key do Gemini
-genai.configure(api_key="keyhere")
+# Configura a API key do Gemini only test 
+genai.configure(api_key="key_here")
 
 
 # Diretórios
@@ -316,5 +316,6 @@ async def support_audio_endpoint(
 @app.get('/health')
 async def health_check():
     return {"status": "ok"}
+
 
 
