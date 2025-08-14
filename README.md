@@ -33,12 +33,12 @@ venv\Scripts\activate
 ```bash
 source venv/bin/activate
 ```
----
 # docker
 ```bash
 docker build -t rag-gemini-app .
 docker run -p 8000:8000 -p 5000:5000 rag-gemini-app
 ```
+---
 ### 2 Install dependencies
 ```bash
 pip install -r requirements.txt
