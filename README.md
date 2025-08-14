@@ -15,9 +15,9 @@ To run this project, you will need **Python 3.8+** and two external tools instal
 
 ---
 
-## ⚙️ ⚙️ Setup and Installation
+## ⚙️ Setup and Installation
 
-### 11 Clone the repository and create a virtual environment
+### 1 Clone the repository and create a virtual environment
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 ---
@@ -48,10 +48,10 @@ uvicorn main:app --reload --port 8000
 ```bash
 uvicorn main:app --reload --port 8000
 ```
-### 6 Accessing the Chat
+### 7 Accessing the Chat
 ```bash
 http://127.0.0.1:5000
 ```
-### 6 Or test using Postman:
+### 8 Or test using Postman:
 ```bash
 http://127.0.0.1:5000
