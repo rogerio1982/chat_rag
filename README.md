@@ -18,19 +18,27 @@ To run this project, you will need **Python 3.8+** and two external tools instal
 ## ⚙️ Setup and Installation
 
 ### 1 Clone the repository and create a virtual environment
+```bash
 git clone (https://github.com/rogerio1982/chat_rag.git)
 cd seu-repositorio
+```
 ---
 
 python -m venv venv
 # Windows
+```bash
 venv\Scripts\activate
+```
 # macOS/Linux
+```bash
 source venv/bin/activate
+```
 ---
 
 ### 2 Install dependencies
+```bash
 pip install -r requirements.txt
+```
 ---
 
 ### 3 Configure your Gemini API key (LLM)
