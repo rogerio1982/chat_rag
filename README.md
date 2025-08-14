@@ -19,15 +19,18 @@ Para o projeto funcionar, você precisa do **Python 3.8+** e de duas ferramentas
 ### 1️⃣ Clone o projeto e crie um ambiente virtual
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
+---
 
 python -m venv venv
 # Windows
 venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
+---
 
 ### 2️⃣ Instale as dependências
 pip install -r requirements.txt
+---
 
 ### 3️⃣ Configure sua chave do Gemini
 Pegue sua chave no Google AI Studio.
