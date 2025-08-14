@@ -17,7 +17,6 @@ Para o projeto funcionar, você precisa do **Python 3.8+** e de duas ferramentas
 ## ⚙️ Configuração e Instalação
 
 ### 1️⃣ Clone o projeto e crie um ambiente virtual
-```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 
@@ -28,18 +27,16 @@ venv\Scripts\activate
 source venv/bin/activate
 
 ###2️⃣ Instale as dependências
-```bash
+
 
 pip install -r requirements.txt
 
 3️⃣ Configure sua chave do Gemini
-```bash
 
 Pegue sua chave no Google AI Studio.
 
 Substitua "SUA_CHAVE_AQUI" no arquivo main.py.
 
 4️⃣ Adicione seus documentos à base de conhecimento
-```bash
 
 Coloque arquivos .txt, .md ou .pdf na pasta:
