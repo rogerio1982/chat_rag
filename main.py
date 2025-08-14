@@ -30,7 +30,6 @@ import re
 import google.generativeai as genai
 
 # Configura a API key do Gemini
-#genai.configure(api_key=os.environ.get("AIzaSyDDAXLbSQBeC0JGNdCAafQ9Af0WPAIy0Yo"))
 genai.configure(api_key="keyhere")
 
 
@@ -317,4 +316,5 @@ async def support_audio_endpoint(
 @app.get('/health')
 async def health_check():
     return {"status": "ok"}
+
 
