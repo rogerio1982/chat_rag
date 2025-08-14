@@ -18,7 +18,7 @@ To run this project, you will need **Python 3.8+** and two external tools instal
 ## ⚙️ Setup and Installation
 
 ### 1 Clone the repository and create a virtual environment
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/rogerio1982/chat_rag.git)
 cd seu-repositorio
 ---
 
