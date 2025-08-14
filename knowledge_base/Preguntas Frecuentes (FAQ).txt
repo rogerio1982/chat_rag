@@ -1,0 +1,44 @@
+Preguntas Frecuentes (FAQ)
+1. Cuenta y Acceso
+P: ¿Cómo recupero mi contraseña si la olvidé?
+R: En la página de inicio de sesión, haz clic en "Olvidé mi contraseña", ingresa tu correo registrado y sigue el enlace que recibirás para restablecerla.
+
+P: ¿Puedo cambiar mi dirección de correo electrónico?
+R: Sí. Ingresa a Configuración de perfil y edita tu correo. Se enviará un mensaje de confirmación a la nueva dirección.
+
+P: ¿Qué hago si no recibo el correo de verificación?
+R: Revisa la carpeta de spam o correo no deseado. Si no aparece, contacta a soporte en support@softhelp.com.
+
+2. Uso de la Plataforma
+P: ¿Puedo acceder a SoftHelp desde mi teléfono?
+R: Sí, la plataforma es compatible con navegadores móviles y también cuenta con aplicación para Android e iOS.
+
+P: ¿Qué navegadores son compatibles?
+R: Google Chrome, Mozilla Firefox y Safari (últimas versiones recomendadas).
+
+P: ¿Se puede usar sin conexión a internet?
+R: No, se requiere conexión a internet activa para acceder a las funciones.
+
+3. Cursos y Contenido
+P: ¿Cómo me inscribo en un curso?
+R: Si eres estudiante, tu instructor puede inscribirte o enviarte un código de acceso para unirte manualmente.
+
+P: ¿Qué tipos de archivos puedo subir como recurso del curso?
+R: Documentos (PDF, DOCX, XLSX), imágenes (JPG, PNG) y videos (MP4, MOV).
+
+P: ¿Puedo eliminar un curso creado?
+R: Sí, desde la configuración del curso, aunque recomendamos archivarlo para conservar datos.
+
+4. Evaluaciones y Calificaciones
+P: ¿Puedo rehacer una actividad o examen?
+R: Depende de la configuración del curso. Consulta con el instructor.
+
+P: ¿Cómo veo mis calificaciones?
+R: Accede al curso y selecciona la sección "Calificaciones" en el menú lateral.
+
+5. Soporte Técnico
+P: ¿Cómo contacto al equipo de soporte?
+R: Puedes usar el botón "Ayuda" dentro de la plataforma o enviar un correo a support@softhelp.com.
+
+P: ¿El soporte tiene horario de atención?
+R: Sí, de lunes a viernes, 9:00 a 18:00 (hora local).

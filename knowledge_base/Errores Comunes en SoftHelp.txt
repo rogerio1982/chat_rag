@@ -1,0 +1,46 @@
+Errores Comunes en SoftHelp
+1. No puedo iniciar sesión
+Causa probable: Usuario o contraseña incorrectos.
+
+Solución:
+
+Verifica que el nombre de usuario y la contraseña estén escritos correctamente (revisa mayúsculas y minúsculas).
+
+Si olvidaste la contraseña, usa la opción "Olvidé mi contraseña".
+
+2. No recibo el correo de verificación
+Causa probable: El mensaje fue filtrado como spam o el correo ingresado está mal escrito.
+
+Solución:
+
+Revisa la carpeta Spam o Correo no deseado.
+
+Si no aparece, solicita un nuevo envío desde el panel de inicio de sesión o contacta a soporte.
+
+3. Error al subir un archivo
+Causa probable: El archivo excede el tamaño máximo permitido o está en un formato no soportado.
+
+Solución:
+
+Verifica que el archivo no supere los 100 MB.
+
+Usa formatos compatibles: PDF, DOCX, XLSX, JPG, PNG, MP4, MOV.
+
+4. La plataforma carga muy lento
+Causa probable: Conexión a internet inestable o uso de un navegador desactualizado.
+
+Solución:
+
+Cierra otras aplicaciones o pestañas que consuman ancho de banda.
+
+Actualiza tu navegador a la última versión.
+
+5. No puedo acceder a un curso
+Causa probable: No estás inscrito o el curso está restringido por fecha o rol.
+
+Solución:
+
+Confirma con tu instructor si tu inscripción está activa.
+
+Revisa si el curso ya está habilitado en la fecha correspondiente.
+
