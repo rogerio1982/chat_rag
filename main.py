@@ -1,9 +1,9 @@
 """
-FastAPI Multimodal RAG API com Gemini
--------------------------------------
+FastAPI Multimodal RAG API with Gemini
+--------------------------------------
 Endpoints:
-POST /support        -> aceita texto + imagem opcional
-POST /support/audio  -> aceita áudio (.mp3/.wav) + imagem opcional
+POST /support        -> accepts text + optional image
+POST /support/audio  -> accepts audio (.mp3/.wav) + optional image
 """
 
 import os
@@ -29,11 +29,10 @@ import re
 # Gemini
 import google.generativeai as genai
 
-# Configura a API key do Gemini only test 
-genai.configure(api_key="key_here")
+# Configure Gemini API key
+genai.configure(api_key="AIzaSyDDAXLbSQBeC0JGNdCAafQ9Af0WPAIy0Yo")
 
-
-# Diretórios
+# Directories
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 os.makedirs(STATIC_DIR, exist_ok=True)
@@ -42,7 +41,7 @@ os.makedirs(KB_DIR, exist_ok=True)
 INDEX_DIR = os.path.join(BASE_DIR, "faiss_index")
 os.makedirs(INDEX_DIR, exist_ok=True)
 
-# Modelos
+# Models
 WHISPER_MODEL = os.environ.get("WHISPER_MODEL", "small")
 EMBEDDING_MODEL_NAME = os.environ.get("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 TOP_K = int(os.environ.get("RAG_TOP_K", "3"))
@@ -50,14 +49,14 @@ TOP_K = int(os.environ.get("RAG_TOP_K", "3"))
 app = FastAPI(title="Multimodal RAG API - Gemini")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-# Globais
+# Globals
 _whisper_model = None
 _embeddings_model = None
 _faiss_index = None
 _documents = []
 _texts = []
 
-# --- Funções utilitárias ---
+# --- Utility functions ---
 
 def chunk_text(text, max_len=300):
     words = text.split()
@@ -84,27 +83,21 @@ def save_index(index, metas, texts):
     with open(os.path.join(INDEX_DIR, "meta.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False)
 
-
 def load_index():
     global _faiss_index, _documents, _texts
     idx_path = os.path.join(INDEX_DIR, "index.faiss")
     meta_path = os.path.join(INDEX_DIR, "meta.json")
 
-    # 1. Carrega o índice do FAISS
     _faiss_index = faiss.read_index(idx_path)
 
-    # 2. Carrega os metadados
     with open(meta_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # 3. Adiciona uma verificação para garantir que 'data' é um dicionário
     if isinstance(data, dict):
         _documents = data.get("metas", [])
         _texts = data.get("texts", [])
     else:
-        # Se 'data' não for um dicionário, algo está errado no arquivo.
-        # Reinicializamos as variáveis para evitar mais erros.
-        print("Erro: O arquivo meta.json não está no formato esperado (dicionário).")
+        print("Error: meta.json is not in the expected dictionary format.")
         _documents = []
         _texts = []
 
@@ -128,7 +121,7 @@ def build_index_from_kb():
                         reader = PyPDF2.PdfReader(f)
                         text = "\n".join([p.extract_text() or "" for p in reader.pages])
             except Exception as e:
-                print(f"Erro lendo {path}: {e}")
+                print(f"Error reading {path}: {e}")
                 continue
             if text.strip():
                 for idx, chunk in enumerate(chunk_text(text)):
@@ -169,48 +162,34 @@ def retrieve(query: str, top_k=TOP_K):
 
 def generate_answer(question: str, context_docs: List[dict]) -> str:
     """
-    Gera uma resposta técnica e amigável usando Gemini LLM,
-    baseada em documentos de suporte.
+    Generates a technical and friendly answer using Gemini LLM,
+    based on support documents.
     """
-    # Se não há contexto, resposta genérica e profissional
     if not context_docs:
         return (
-            "Olá! Não encontrei informações relevantes nos meus documentos para responder a sua pergunta. "
-            "Por favor, reformule a questão ou forneça mais detalhes."
+            "Hello! I could not find relevant information in my documents to answer your question. "
+            "Please rephrase the question or provide more details."
         )
 
-    # Monta o contexto para o prompt
     context_text = "\n\n".join([f"[{d['source']}]: {d['snippet']}" for d in context_docs])
 
-    # Prompt para o Gemini com as novas instruções
     prompt = (
-        "Você é um **assistente técnico de suporte**. Sua função é responder a perguntas de forma clara, "
-        "precisa e amigável, como se estivesse ajudando um colega de trabalho ou um cliente. "
-        "Utilize a informação fornecida no contexto abaixo para formular sua resposta.\n\n"
-        "**Instruções:**\n"
-        "1.  **Seja direto e objetivo:** A resposta deve ir direto ao ponto, sem rodeios.\n"
-        "2.  **Mantenha um tom profissional e prestativo:** Use uma linguagem acessível, evite gírias e jargões complexos, a menos que sejam estritamente necessários.\n"
-        "3.  **Cite as fontes quando possível:** Se a resposta for baseada em uma fonte específica, mencione-a (ex: 'De acordo com o manual, ...').\n"
-        "4.  **Se a informação for insuficiente:** Se o contexto não tiver dados suficientes para uma resposta completa, diga de forma educada que a informação não foi encontrada no material de referência. Não invente ou presuma respostas.\n"
-        "5.  **Formate a resposta:** Use listas, negrito ou itálico para organizar a informação e torná-la mais fácil de ler, especialmente em instruções passo a passo.\n\n"
-        f"**Contexto:**\n{context_text}\n\n**Pergunta:** {question}\n**Resposta:**"
+        "You are a **technical support assistant**. Your job is to answer questions clearly, "
+        "accurately, and friendly, as if helping a coworker or a client. "
+        "Use the information provided in the context below to formulate your answer.\n\n"
+        "**Instructions:**\n"
+        "1. **Be concise:** Get straight to the point.\n"
+        "2. **Maintain a professional and helpful tone:** Use accessible language, avoid slang and complex jargon unless necessary.\n"
+        "3. **Cite sources when possible:** Mention sources if applicable (e.g., 'According to the manual, ...').\n"
+        "4. **If information is insufficient:** Politely say the information was not found in the reference material. Do not invent answers.\n"
+        "5. **Format the response:** Use lists, bold, or italics for readability, especially for step-by-step instructions.\n\n"
+        f"**Context:**\n{context_text}\n\n**Question:** {question}\n**Answer:**"
     )
 
-    # Chamada Gemini usando Client
-    # NOTE: O seu código tem uma chamada a `client.generate_text`, que é de uma API mais antiga.
-    # A API do Gemini Pro 1.5 usa `genai.GenerativeModel`. Recomendo atualizar para a versão mais recente.
-    # Exemplo de como ficaria com a nova API:
-    # model = genai.GenerativeModel('gemini-1.5-pro-latest')
-    # response = model.generate_content(prompt)
-    # return response.text
-
-    # Mantendo a sua chamada original por compatibilidade
-    # Use genai.GenerativeModel para a API mais recente
     model = genai.GenerativeModel('gemini-1.5-flash')
     response = model.generate_content(prompt)
 
     return response.text
-
 
 def transcribe_audio(file_path: str) -> str:
     model = load_whisper_model()
@@ -225,7 +204,7 @@ def ocr_image(image_path: str) -> str:
         return ""
 
 def text_to_speech(text: str, out_path: str) -> str:
-    tts = gTTS(text=text, lang='es')
+    tts = gTTS(text=text, lang='en')
     tts.save(out_path)
     return out_path
 
@@ -245,7 +224,7 @@ async def support_endpoint(
     image: Optional[UploadFile] = File(None)
 ):
     if not text and not image:
-        raise HTTPException(status_code=400, detail="Forneça 'text' ou 'image'.")
+        raise HTTPException(status_code=400, detail="Provide 'text' or 'image'.")
 
     ocr_text = None
     if image:
@@ -316,6 +295,3 @@ async def support_audio_endpoint(
 @app.get('/health')
 async def health_check():
     return {"status": "ok"}
-
-
-
