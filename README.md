@@ -16,7 +16,7 @@ Para o projeto funcionar, você precisa do **Python 3.8+** e de duas ferramentas
 
 ## ⚙️ Configuração e Instalação
 
-### 1️⃣ Clone o projeto e crie um ambiente virtual
+### 1 Clone o projeto e crie um ambiente virtual
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 ---
@@ -28,13 +28,25 @@ venv\Scripts\activate
 source venv/bin/activate
 ---
 
-### 2️⃣ Instale as dependências
+### 2 Instale as dependências
 pip install -r requirements.txt
 ---
 
-### 3️⃣ Configure sua chave do Gemini
+### 3 Configure sua chave do Gemini
 Pegue sua chave no Google AI Studio.
 Substitua "SUA_CHAVE_AQUI" no arquivo main.py.
 
-### 4️⃣ Adicione seus documentos à base de conhecimento
-Coloque arquivos .txt, .md ou .pdf na pasta:
+### 4 Como Rodar
+Você precisa rodar **dois servidores** em terminais separados.
+
+### 5  Inicie a API FastAPI
+```bash
+uvicorn main:app --reload --port 8000
+```
+### 6 Inicie a API FastAPI
+```bash
+uvicorn main:app --reload --port 8000
+```
+### 6 Acesse o chat no navegador
+```bash
+http://127.0.0.1:5000
